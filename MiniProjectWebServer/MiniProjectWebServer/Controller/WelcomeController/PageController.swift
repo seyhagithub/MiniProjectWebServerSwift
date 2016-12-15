@@ -10,6 +10,8 @@ import UIKit
 
 class PageController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    
+    
     lazy var VCArray: [UIViewController]  = {
     
         return [self.VCInstance(name: "FilterVC"),
@@ -35,6 +37,8 @@ class PageController: UIPageViewController, UIPageViewControllerDelegate, UIPage
     }
     
     override func viewDidLayoutSubviews() {
+        
+        //========== Seting Page Controller Style ==========
         super.viewDidLayoutSubviews()
         for view in self.view.subviews {
             if view is UIScrollView {
