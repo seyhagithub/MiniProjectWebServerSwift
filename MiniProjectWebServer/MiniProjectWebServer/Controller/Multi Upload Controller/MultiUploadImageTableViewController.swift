@@ -12,6 +12,11 @@ import Alamofire
 
 class MultiUploadImageTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBAction func backToMainButton(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBOutlet var myTableView: UITableView!
 
     let pickerController = DKImagePickerController()

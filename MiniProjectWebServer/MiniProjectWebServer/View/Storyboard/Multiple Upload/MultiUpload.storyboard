@@ -61,12 +61,24 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="KKO-AZ-RkA">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Browse" id="ELM-A8-PwA">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="browseImageButton:" destination="9zo-7m-13m" id="53B-iP-h36"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="u32-qu-WCG">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                            <state key="normal" title="Go Home">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="backToMainButton:" destination="9zo-7m-13m" eventType="touchUpInside" id="gDI-t6-AmF"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Upload" id="dYP-HJ-UVY">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -87,7 +99,7 @@
             <objects>
                 <navigationController restorationIdentifier="multiUploadST" storyboardIdentifier="multiUploadST" automaticallyAdjustsScrollViewInsets="NO" id="RjJ-xl-fL1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j45-sM-0SQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j45-sM-0SQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.1911550909280777" green="0.6378670334815979" blue="0.26147949695587158" alpha="1" colorSpace="calibratedRGB"/>

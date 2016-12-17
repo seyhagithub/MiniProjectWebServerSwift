@@ -10,9 +10,13 @@ import Foundation
 
 protocol ArticleCRUDServiceInterface {
     
-    func responseWithArticle(articles: [Article])
+    func responseWithArticle(articles: [Article], pagination:Pagination)
     
     func completeSendDataToService()
+    
+    func deleteArticleCompleteFromService()
+    
+    func updateArticleCompleteFromService()
     
 }
 

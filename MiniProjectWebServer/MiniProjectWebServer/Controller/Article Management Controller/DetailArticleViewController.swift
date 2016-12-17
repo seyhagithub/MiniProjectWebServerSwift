@@ -26,8 +26,8 @@ class DetailArticleViewController: UIViewController {
         if article != nil {
             
             print("not nil")
-            titleArticleLabel.text = article.title
-            authorLabel.text = "Author: \(article.author?.name)"
+            titleArticleLabel.text = article.title?.capitalized
+            authorLabel.text = "Author: \(article.author?.name)".capitalized
             emailLabel.text = "Email: \(article.author?.email)"
             facebookBarButtonToolbar.title = "Facebook ID: \(article.author?.facebook_id)"
             descriptionTextView.text = article.description
@@ -36,14 +36,8 @@ class DetailArticleViewController: UIViewController {
                 
                 if let url = URL(string: imageURL) {
                     
-                    articleImageView.kf.setImage(with: url)
-                    
-                } else {
-                    
-                    articleImageView.image = UIImage(named: "nature")
+                    articleImageView.kf.setImage(with: url, placeholder: UIImage(named: "nature"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
-                
-                
             }
             
         } else {

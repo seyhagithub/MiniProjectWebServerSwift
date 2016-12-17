@@ -10,7 +10,9 @@ import Foundation
 
 protocol ArticlePresenterInterface {
     
-    func completeRequestArticle(articles: [Article])
+    func completeRequestArticle(articles: [Article], pagination:Pagination)
+    
+    func deleteArticleComplete()
 }
 
 protocol ArticleUploadImageToServer{
@@ -18,5 +20,8 @@ protocol ArticleUploadImageToServer{
     func uploadImageCompleted(data:String)
     
     func postDataCompleted()
+    
+    func updateArticleComplete()
+    
 
 }

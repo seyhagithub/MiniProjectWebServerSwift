@@ -81,7 +81,7 @@
                                                 <constraint firstAttribute="width" constant="359" id="FbZ-IS-Pcq"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FloatRatingView - Whole, half or floating point " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWq-Ml-9lK">
@@ -91,7 +91,7 @@
                                                 <constraint firstAttribute="height" constant="25" id="dnu-QJ-jSC"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
-                                            <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhu-6H-BMx">
@@ -178,20 +178,30 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="oHV-CM-UNj">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="ozC-Ti-Jld">
+                            <connections>
+                                <action selector="backToMainButton:" destination="UWa-r7-IG6" id="d4h-6i-yhV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Rnr-ti-2oh">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="r7f-ps-6gv" kind="show" identifier="toAddEditArticleSegue" id="wRt-GZ-n8r"/>
+                                <action selector="toAddButton:" destination="UWa-r7-IG6" id="hHx-QJ-ape"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="sgU-En-a77">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="articleTableView" destination="BND-2s-fGW" id="nfW-LB-wcO"/>
+                        <segue destination="r7f-ps-6gv" kind="show" identifier="toAddEditSegue" id="3hS-l8-LMO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVO-EQ-Oxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921" y="-680"/>
+            <point key="canvasLocation" x="1904.8" y="-613.04347826086962"/>
         </scene>
         <!--Add/Edit-->
         <scene sceneID="aqR-mF-gdm">

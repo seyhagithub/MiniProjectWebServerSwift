@@ -11,14 +11,14 @@ import ObjectMapper
 
 class Article: Mappable {
     
-    var id: String?
+    var id: Int?
     var title: String?
     var description: String?
     var created_date: String?
     var author: Author?
     var status: String?
     var image: String?
-    var pagination: Pagination?
+    //var pagination: Pagination?
     
     required init?(map: Map) {}
     
@@ -31,14 +31,14 @@ class Article: Mappable {
         author          <- map["AUTHOR"]
         status          <- map["STATUS"]
         image           <- map["IMAGE"]
-        pagination      <- map["PAGINATION"]
+       // pagination      <- map["PAGINATION"]
     }
     
 }
 
 class Pagination: Mappable {
     
-    var page: String?
+    var page: Int?
     var limit: Int?
     var total_count: Int?
     var total_pages: Int?
@@ -50,7 +50,7 @@ class Pagination: Mappable {
         page            <- map["PAGE"]
         limit           <- map["LIMIT"]
         total_count     <- map["TOTAL_COUNT"]
-        total_pages     <- map["TOTAL_COUNT"]
+        total_pages     <- map["TOTAL_PAGES"]
       
     }
 }

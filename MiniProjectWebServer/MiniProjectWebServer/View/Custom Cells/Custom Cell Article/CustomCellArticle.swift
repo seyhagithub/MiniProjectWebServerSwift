@@ -32,13 +32,9 @@ class CustomCellArticle: UITableViewCell {
             
             if let url = URL(string: imageURL) {
                 print("image url response========\(url)")
-                 articleImage.kf.setImage(with: url)
+                 articleImage.kf.setImage(with: url, placeholder:  UIImage(named: "nature"), options: nil, progressBlock: nil, completionHandler: nil)
                 
-            } else {
-                
-                articleImage.image = UIImage(named: "nature")
             }
-           
         }
         
         

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Kingfisher
+import PKHUD
 class AddEditArticleViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UITextField!
@@ -19,6 +20,7 @@ class AddEditArticleViewController: UIViewController {
     
     
     var articlePresenter = ArticlePresenter()
+    var article: Article!
     
     var imageData: String?
     
@@ -26,12 +28,40 @@ class AddEditArticleViewController: UIViewController {
     
     @IBAction func saveButton(_ sender: Any) {
         
-        articlePresenter.articleUploadImageToServer = self
+         HUD.show(.progress)
         
-        let myImage = UIImagePNGRepresentation(articleImageView.image!)
-        print("image view \(myImage)")
+        if article == nil {
         
-        articlePresenter.uploadSingleImageToServer(data:myImage!)
+            articlePresenter.articleUploadImageToServer = self
+            
+            let myImage = UIImagePNGRepresentation(articleImageView.image!)
+            print("image view \(myImage)")
+            
+            articlePresenter.uploadSingleImageToServer(data:myImage!)
+            
+        } else {
+            
+            let data = UIImagePNGRepresentation(articleImageView.image!)
+            if let title = titleLabel.text, let description =  descriptionTextView.text  {
+                
+                
+                datajson = [
+                    
+                    "TITLE": title,
+                    "DESCRIPTION": description,
+                    "AUTHOR": 0,
+                    "CATEGORY_ID" : 0,
+                    "STATUS": "string",
+                    "IMAGE": ""
+                ]
+                
+            }
+            
+            let art = Article(JSON: datajson)
+            
+            articlePresenter.articleUploadImageToServer = self
+            articlePresenter.updateArticleToService(article: art!,data: data!)
+        }
         
     }
 
@@ -76,7 +106,45 @@ class AddEditArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if article != nil {
+            
+            if let title = article.title {
+                
+                titleLabel.text = title
+            }
+            if let name = article.author?.name {
+                
+                  authorLabel.text = name
+            }
+            if let facebook_id = article.author?.facebook_id {
+                
+                 facebookIDLabel.text = facebook_id
+            }
+            if let description = article.description {
+                
+                descriptionTextView.text = description
+            } else {
+                
+                descriptionTextView.text = ""
+            }
+            if let email = article.author?.email {
+                 emailLabel.text = email
+                
+            }
+            if let imageURL = article.image {
+                
+                if let url = URL(string: imageURL) {
+                    print("image url response========\(url)")
+                    articleImageView.kf.setImage(with: url)
+                    
+                } else {
+                    
+                    articleImageView.image = UIImage(named: "nature")
+                }
+                
+            }
+        }
+
     }
 
 }
@@ -145,9 +213,21 @@ extension AddEditArticleViewController: UIImagePickerControllerDelegate, UINavig
         
     func postDataCompleted() {
         
-        print("Complete Post Data to Server")
-        self.dismiss(animated: true, completion: nil)
-
+        
+        DispatchQueue.main.async {
+            HUD.hide()
+            self.navigationController!.popViewController(animated: true)
+        }
+    }
+    
+    func updateArticleComplete() {
+        
+        
+        print("update completed")
+        DispatchQueue.main.async {
+             HUD.hide()
+            self.navigationController!.popViewController(animated: true)
+        }
     }
     
 }
