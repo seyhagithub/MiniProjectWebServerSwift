@@ -9,6 +9,7 @@
 import UIKit
 import DKImagePickerController
 import Alamofire
+import PKHUD
 
 class MultiUploadImageTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -64,7 +65,7 @@ class MultiUploadImageTableViewController: UITableViewController, UIImagePickerC
     @IBAction func uploadMultiImageButton(_ sender: Any) {
         
         print("uploading.............")
-        
+        HUD.show(.progress)
         
         Alamofire.upload(
                 multipartFormData: { multipartFormData in
@@ -89,6 +90,10 @@ class MultiUploadImageTableViewController: UITableViewController, UIImagePickerC
                     case .success(let upload, _, _):
                         upload.responseJSON { response in
                             debugPrint(response)
+                            
+                            HUD.hide()
+                            
+                            HUD.flash(.success, delay: 1.5)
                         }
                     case .failure(let encodingError):
                         print(encodingError)
