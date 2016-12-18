@@ -74,11 +74,30 @@ class AddEditArticleViewController: UIViewController {
         
         let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        let cameraAction = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default)
-        {
-            UIAlertAction in
-            self.funcCameraButton()
-        }
+//        let cameraAction = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default)
+//        {
+//            UIAlertAction in
+//            self.funcCameraButton()
+//        }
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            
+            print("Camera  pressed")
+            
+            if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
+                
+                self.imagePickerView.delegate = self
+                self.imagePickerView.sourceType = .camera
+                self.imagePickerView.cameraCaptureMode = .photo
+                self.imagePickerView.modalPresentationStyle = .fullScreen
+                
+                self.present(self.imagePickerView, animated: true, completion: nil)
+                
+            } else {
+                
+                self.funcCameraButton()
+            }
+        })
         
         let gallaryAction = UIAlertAction(title: "Choose Photo", style: UIAlertActionStyle.default)
         {
@@ -173,12 +192,10 @@ extension AddEditArticleViewController: UIImagePickerControllerDelegate, UINavig
     
     func funcCameraButton() {
         
-        imagePickerView.delegate = self
-        imagePickerView.sourceType = .camera
-        imagePickerView.cameraCaptureMode = .photo
-        imagePickerView.modalPresentationStyle = .fullScreen
-        
-        present(imagePickerView, animated: true, completion: nil)
+        let alertVC = UIAlertController(title: "No Camera",message: "Sorry, this device has no camera",preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK",style:.default,handler: nil)
+        alertVC.addAction(okAction)
+        present(alertVC,animated: true,completion: nil)
     }
     
     func uploadImageCompleted(data: String) {
