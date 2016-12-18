@@ -64,13 +64,14 @@ class MultiUploadImageTableViewController: UITableViewController, UIImagePickerC
     
     @IBAction func uploadMultiImageButton(_ sender: Any) {
         
-        print("uploading.............")
-        HUD.show(.progress)
-        
-        Alamofire.upload(
+        if !fileUIImage.isEmpty {
+            
+            HUD.show(.progress)
+            
+            Alamofire.upload(
                 multipartFormData: { multipartFormData in
                     
-                   
+                    
                     for fileImage in self.fileUIImage {
                         
                         multipartFormData.append(UIImageJPEGRepresentation(fileImage, 0.6)!, withName: "files", fileName:"image.jpg", mimeType: "image/jpg")
@@ -99,8 +100,10 @@ class MultiUploadImageTableViewController: UITableViewController, UIImagePickerC
                         print(encodingError)
                     }
             }
-        )
+            )
 
+        }
+        
     }
     
 
