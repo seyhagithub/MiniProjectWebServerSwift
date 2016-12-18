@@ -1,0 +1,48 @@
+PODS:
+  - Alamofire (4.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Cosmos (7.0.0)
+  - DKImagePickerController (3.4.2):
+    - DKImagePickerController/Camera (= 3.4.2)
+    - DKImagePickerController/ImageManager (= 3.4.2)
+  - DKImagePickerController/Camera (3.4.2)
+  - DKImagePickerController/ImageManager (3.4.2)
+  - Kingfisher (3.2.1)
+  - ObjectMapper (2.2.1)
+  - PKHUD (4.0.0)
+  - SwiftSpinner (1.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - Cosmos (~> 7.0)
+  - DKImagePickerController
+  - Kingfisher (~> 3.0)
+  - ObjectMapper (~> 2.2)
+  - PKHUD (~> 4.0)
+  - SwiftSpinner
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: dcf98f9bf3a632a7f40679b7da46f09681e48526
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+SPEC CHECKSUMS:
+  Alamofire: e266cf991b933498df791e645e0d8ac294492153
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Cosmos: 2c8299147138758f6ebbb247cf1aeed77998bdf9
+  DKImagePickerController: 8fc8a42120cb0c9b7982af04d47e0e5b25b5186f
+  Kingfisher: 64ef28c6d3d6f344e3ae2d7f5c9da80439505d99
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
+  PKHUD: 2bb45c936bb8afa39f3cd33ec14e8cc89f624255
+  SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
+
+PODFILE CHECKSUM: 4081fb415897985167666d07925a9d8830f49146
+
+COCOAPODS: 1.2.0.beta.1

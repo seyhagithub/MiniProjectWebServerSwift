@@ -1,0 +1,6 @@
+framework module Pods_MiniProjectWebServer {
+  umbrella header "Pods-MiniProjectWebServer-umbrella.h"
+
+  export *
+  module * { export * }
+}

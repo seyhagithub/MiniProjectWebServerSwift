@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9DA4284F5748B40EF2975E2E014CEF689E21C2FD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2440BC4DF7315D13B5CBA283FBA41746E270661D" : 9223372036854775807,
+    "9DA4284F5748B40EF2975E2E014CEF689E21C2FD" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "36E09878-FDDC-48AA-A316-10A95969B521",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2440BC4DF7315D13B5CBA283FBA41746E270661D" : "..",
+    "9DA4284F5748B40EF2975E2E014CEF689E21C2FD" : "MiniProjectWebServerSwift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MiniProjectWebServer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MiniProjectWebServer\/MiniProjectWebServer.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/seyhagithub\/Switf.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2440BC4DF7315D13B5CBA283FBA41746E270661D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/seyhagithub\/MiniProjectWebServerSwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9DA4284F5748B40EF2975E2E014CEF689E21C2FD"
+    }
+  ]
+}
