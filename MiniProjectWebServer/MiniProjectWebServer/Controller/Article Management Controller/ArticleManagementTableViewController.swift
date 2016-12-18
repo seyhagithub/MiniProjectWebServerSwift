@@ -20,7 +20,7 @@ class ArticleManagementTableViewController: UITableViewController {
     var articlePresenter:ArticlePresenter?
     var searchController = UISearchController()
     var shouldSearchArticle = false
-
+    var paggingView : UIActivityIndicatorView?
     
     // MARK: ================ UI Oulet  ===================
     @IBOutlet var articleTableView: UITableView!
@@ -46,16 +46,17 @@ class ArticleManagementTableViewController: UITableViewController {
     func refresh(sender:AnyObject)
     {
        
+        print("======== pull to refresh =========")
         articleTableView.refreshControl?.beginRefreshing()
-       
-       articlePresenter?.loadArticles(search: "", page: 1, limit: 15)
+        articlePresenter?.loadArticles(search: "", page: 1, limit: 15,requestType:"requestArticle")
     
-
     }
     
     // MARK: ============== Main Function  ================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addPagination()
         
         HUD.hide()
         
@@ -75,7 +76,7 @@ class ArticleManagementTableViewController: UITableViewController {
         articlePresenter = ArticlePresenter()
         articlePresenter?.articlePresenterInterface = self
         
-        articlePresenter?.loadArticles(search: "", page: 1, limit: 15)
+        articlePresenter?.loadArticles(search: "", page: 1, limit: 15, requestType: "requestArticle")
     }
 
     // MARK: ================== Table View =====================
@@ -136,36 +137,7 @@ class ArticleManagementTableViewController: UITableViewController {
         }
     }
     
-    
-    //================= Pagination =================
-    func Pagination(){
-        
-        print("===========Compare page witb total page==========")
-        print(pagination.page!)
-        print(pagination.total_pages!)
-        
-        if pagination.page! <= pagination.total_pages! {
-            pagination.page  = pagination.page! + 1
-            
-            print(pagination.page!)
-            articlePresenter?.loadArticles(search: "", page: pagination.page!, limit: 15)
-        }
-    }
-    
-    
-    func checkPagination(articles: [Article]){
 
-       if self.articles.isEmpty {
-        
-         self.articles = articles
-      
-       } else {
-       
-            self.articles = articles
-            self.articles.append(contentsOf: articles)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toDeletailArticleSegue" {
@@ -204,7 +176,43 @@ class ArticleManagementTableViewController: UITableViewController {
     
     
     // MARK: =============== Configuration =========================
+    
+    //================= Pagination =================
+    func Pagination(){
+        
+        print("===========Compare page witb total page==========")
+        
+        print("============Total Page: \(pagination.total_pages!)==========")
+        
+        if pagination.page! < pagination.total_pages! {
+            pagination.page  = pagination.page! + 1
+            
+            print("============Page: \(pagination.page!)==========")
+            articlePresenter?.loadArticles(search: "", page: pagination.page!, limit: 15, requestType: "pagination")
+        }
+    }
+    
+    func addPagination(){
+        let activityView = UIView()
+        var frame = activityView.frame
+        frame.size.width = tableView.bounds.width
+        frame.size.height = 50
+        activityView.frame = frame
+//        activityView.backgroundColor = FlatWhite()
+        
+        
+        paggingView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        paggingView?.center = activityView.center
+        paggingView?.tintColor = UIColor.black
+        paggingView?.color = UIColor.black
+//        paggingView?.backgroundColor = FlatWhite()
+        //paggingView?.hidesWhenStopped = true
+        paggingView?.startAnimating()
+        activityView.addSubview(paggingView!)
+        tableView.tableFooterView = activityView
+    }
 
+    
     func configureUISearchController() {
         
         self.searchController = UISearchController(searchResultsController: nil)
@@ -243,7 +251,7 @@ extension ArticleManagementTableViewController: ArticlePresenterInterface, UISea
             
             if !(searchController.searchBar.text?.isEmpty)! {
                 
-                articlePresenter?.loadArticles(search: searchController.searchBar.text!.lowercased(), page: 1, limit: 15)
+                articlePresenter?.loadArticles(search: searchController.searchBar.text!.lowercased(), page: 1, limit: 15, requestType: "requestArticle")
 
             }
             
@@ -261,40 +269,52 @@ extension ArticleManagementTableViewController: ArticlePresenterInterface, UISea
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
          print("======== searchBarCancelButtonClicked =========")
-         articlePresenter?.loadArticles(search: "", page: 1, limit: 15)
+         articlePresenter?.loadArticles(search: "", page: 1, limit: 15, requestType: "requestArticle")
         
     }
     
     
     // MARK: ================== Notify Complete Action =================
-    func completeRequestArticle(articles: [Article], pagination:Pagination) {
+    func completeRequestArticle(articles: [Article], pagination:Pagination, requestType:String) {
         
        articleTableView.refreshControl?.endRefreshing()
         
-        if (self.refreshControl?.isRefreshing)! {
+        switch requestType {
             
-            self.articles = articles
+            case "requestArticle":
+                  self.articles = articles
+                
+            case "pagination":
+                
+                
+                if self.articles.isEmpty {
+        
+                    self.articles = articles
+        
+                } else {
+        
+                   self.articles.append(contentsOf: articles)
+                    articleTableView.tableFooterView?.isHidden = false
+                }
+            default:
+                break
         }
-        
+
         self.pagination = pagination
-        
-       checkPagination(articles: articles)
-       
-        
+    
         print("=============\(self.articles)========")
         
         DispatchQueue.main.async {
             
             HUD.hide()
             
-            print(articles)
             self.articleTableView.reloadData()
         }
     }
 
     func deleteArticleComplete() {
         
-        articlePresenter?.loadArticles(search: "", page: 1, limit: 15)
+        articlePresenter?.loadArticles(search: "", page: 1, limit: 15, requestType: "requestArticle")
         
 
     }

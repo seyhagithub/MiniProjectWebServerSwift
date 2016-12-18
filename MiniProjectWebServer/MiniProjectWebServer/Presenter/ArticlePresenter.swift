@@ -14,11 +14,12 @@ class ArticlePresenter {
     var articleUploadImageToServer: ArticleUploadImageToServer?
     let articleCRUDService = ArticleCRUDService()
     var article: Article!
+    var requestType:String!
     
     //========================
-    func loadArticles(search: String, page: Int, limit: Int) {
+    func loadArticles(search: String, page: Int, limit: Int, requestType:String) {
        
-      
+        self.requestType = requestType
         articleCRUDService.delegate = self
         
         articleCRUDService.loadArticlesWithData(search: search, page: page, limit: limit)
@@ -64,7 +65,7 @@ extension ArticlePresenter: ArticleCRUDServiceInterface, ArticleUplodSingleImage
         
         if articles.count > 0 {
             
-            articlePresenterInterface?.completeRequestArticle(articles: articles, pagination: pagination)
+            articlePresenterInterface?.completeRequestArticle(articles: articles, pagination: pagination, requestType:self.requestType)
         }
         
         else {

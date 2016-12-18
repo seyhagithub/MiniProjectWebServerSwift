@@ -10,7 +10,7 @@ import Foundation
 
 protocol ArticlePresenterInterface {
     
-    func completeRequestArticle(articles: [Article], pagination:Pagination)
+    func completeRequestArticle(articles: [Article], pagination:Pagination, requestType:String)
     
     func deleteArticleComplete()
 }
